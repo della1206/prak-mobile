@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.della_apps"
+    namespace = "com.example.roujwa_apps"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.example.della_apps"
+        applicationId = "com.example.roujwa_apps"
         minSdk = 28
         targetSdk = 36
         versionCode = 1
@@ -30,6 +30,9 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+    buildFeatures{
+        viewBinding = true
     }
 }
 
