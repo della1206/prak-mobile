@@ -1,6 +1,8 @@
 package com.example.della_apps.pertemuan_5
 
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -12,28 +14,20 @@ import com.example.della_apps.R
 class FifthActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFifthBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFifthBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        binding.btnWebView.iconTint = ColorStateList.valueOf(Color.parseColor("#FFD700"))
 
         setSupportActionBar(binding.toolbar)
 
         supportActionBar?.apply {
-            title = "Activity Fifth"
-            subtitle = "Ini adalah subtitle"
-
-            // Mengaktifkan tombol "Up" (Back)
+            title = "Della apps"
+            subtitle = "Mode Improvisasi Aktif"
+            setHomeAsUpIndicator(R.drawable.ic_arrow_back)
             setDisplayHomeAsUpEnabled(true)
-            setDisplayShowHomeEnabled(true)
-
-            // (Opsional) Mengganti icon back default dengan custom Vector Asset (misal ic_arrow_back)
-            // setHomeAsUpIndicator(R.drawable.ic_arrow_back)
         }
-
-        // 3. Menangani klik pada tombol WebView
         binding.btnWebView.setOnClickListener {
             val intent = Intent(this, WebViewActivity::class.java)
             startActivity(intent)
@@ -45,13 +39,12 @@ class FifthActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
-
     // 5. Menangani klik pada item menu di Toolbar
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             // Menangani tombol Back di Toolbar
             android.R.id.home -> {
-                onBackPressedDispatcher.onBackPressed() // Menggunakan dispatcher terbaru
+                onBackPressedDispatcher.onBackPressed()
                 true
             }
             // Menangani klik Search

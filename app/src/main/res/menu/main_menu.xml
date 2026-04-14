@@ -7,10 +7,22 @@
         android:title="Search"
         android:icon="@android:drawable/ic_menu_search"
         app:showAsAction="ifRoom" />
-
+    <item
+        android:id="@+id/action_more"
+        android:title="Lainnya"
+        app:showAsAction="never">
+        <menu>
+            <item
+                android:id="@+id/menu_profile"
+                android:title="Profil Saya" />
+            <item
+                android:id="@+id/menu_about"
+                android:title="Tentang Aplikasi" />
+        </menu>
+    </item>
     <item
         android:id="@+id/action_settings"
         android:title="Settings"
-        android:icon="@android:drawable/ic_menu_preferences"
         app:showAsAction="never" />
 </menu>
+
