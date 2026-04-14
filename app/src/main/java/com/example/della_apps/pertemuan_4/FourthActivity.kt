@@ -6,12 +6,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.roujwa_apps.R
-import com.example.roujwa_apps.databinding.ActivityMainBinding
+import com.example.della_apps.databinding.ActivityMainBinding
+import com.example.della_apps.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
-class fourthActivity : AppCompatActivity() {
+class FourthActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

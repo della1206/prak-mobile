@@ -9,8 +9,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.roujwa_apps.R
-import com.example.roujwa_apps.databinding.ActivityThirdBinding
+import com.example.della_apps.R
+import com.example.della_apps.databinding.ActivityThirdBinding
+
 
 class ThirdActivity : AppCompatActivity() {
     private lateinit var binding : ActivityThirdBinding

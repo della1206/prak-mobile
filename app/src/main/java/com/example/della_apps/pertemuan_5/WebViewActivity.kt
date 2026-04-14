@@ -1,0 +1,70 @@
+package com.example.della_apps.pertemuan_5
+
+import android.os.Build
+import android.os.Bundle
+import android.view.MenuItem
+import android.webkit.WebViewClient
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
+import com.example.della_apps.databinding.ActivityWebViewBinding
+
+class WebViewActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityWebViewBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityWebViewBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // 1. Setup Toolbar
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.apply {
+            title = "Web Detik"
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
+
+        // 2. Konfigurasi WebView
+        binding.webView.apply {
+            webViewClient = WebViewClient()
+            settings.javaScriptEnabled = true
+            loadUrl("https://merdeka.com")
+        }
+
+        // 3. Handle tombol Back (Cara Baru/Modern)
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (binding.webView.canGoBack()) {
+                    binding.webView.goBack() // Kembali ke halaman web sebelumnya
+                } else {
+                    isEnabled = false // Matikan callback ini
+                    onBackPressedDispatcher.onBackPressed() // Keluar dari Activity
+                }
+            }
+        })
+
+        // 4. Scroll listener (Hide/Show Toolbar)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            binding.webView.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+                if (scrollY > oldScrollY) {
+                    binding.appBar.setExpanded(false, true)
+                } else if (scrollY < oldScrollY) {
+                    binding.appBar.setExpanded(true, true)
+                }
+            }
+        }
+    }
+
+    // 5. Menangani tombol Back di Toolbar (Ikon Panah)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                // Memanggil dispatcher agar logika handleOnBackPressed di atas dijalankan
+                onBackPressedDispatcher.onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+}

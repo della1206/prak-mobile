@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.roujwa_apps"
+    namespace = "com.example.della_apps"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.example.roujwa_apps"
+        applicationId = "com.example.della_apps"
         minSdk = 28
         targetSdk = 36
         versionCode = 1
