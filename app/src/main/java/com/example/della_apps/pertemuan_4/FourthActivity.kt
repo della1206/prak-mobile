@@ -8,62 +8,47 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.della_apps.databinding.ActivityMainBinding
 import com.example.della_apps.R
+import com.example.della_apps.databinding.ActivityFourthBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
 class FourthActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityMainBinding
+    private lateinit var binding: ActivityFourthBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_fourth)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        binding = ActivityFourthBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
+        // Set Toolbar
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.apply {
+            title = "Detail Info"
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
         }
 
-        val name = intent.getStringExtra("nama")
-        val asal = intent.getStringExtra("asal")
-        val umur = intent.getStringExtra("umur")
-
-        Log.d("==Data Intent ==", "Nama: $name, Usia: $umur, Asal $asal")
+        val nama = intent.getStringExtra("nama")
+        Log.e("Data Intent", "Nama: $nama")
 
         binding.btnShowSnackbar.setOnClickListener {
-            Snackbar.make(binding.root, "Ini adalah Snackbar", Snackbar.LENGTH_SHORT)
-                .setAction("Tutup"){
-                    Log.e("Info Snackbar","Snackbar ditutup")
-                }
-                .show()
+            Snackbar.make(binding.root, "Ini adalah Snackbar", Snackbar.LENGTH_SHORT).show()
         }
+
         binding.btnShowAlertDialog.setOnClickListener {
             MaterialAlertDialogBuilder(this)
                 .setTitle("Konfirmasi")
-                .setMessage("Apakah Anda yakin ingin melanjutkan?")
-                .setPositiveButton("Ya") { dialog, _ ->
-                    dialog.dismiss()
-                    Log.e("Info Dialog","Anda memilih Ya!")
-                }
-                .setNegativeButton("Batal") { dialog, _ ->
-                    dialog.dismiss()
-                    Log.e("Info Dialog","Anda memilih Tidak!")
-                }
+                .setMessage("Apakah Anda yakin?")
+                .setPositiveButton("Ya") { dialog, _ -> dialog.dismiss() }
+                .setNegativeButton("Kembali") { dialog, _ -> dialog.dismiss() }
                 .show()
         }
-        binding.btnKembali.setOnClickListener {
-            finish()
-        }
-            Log.e("onCreate", "{nama_activity} dibuat pertama kali")
 
-    }
-    override fun onStart() {
-        super.onStart()
-        Log.e("onStart", "onStart: {nama_activity} terlihat di layar")
+        // btnKembali DIHAPUS karena sudah ada tombol back di Toolbar
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.e("onDestroy", "{nama_activity} dihapus dari stack")
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return true
     }
-    }
+}
