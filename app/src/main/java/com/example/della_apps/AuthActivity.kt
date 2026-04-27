@@ -2,17 +2,12 @@ package com.example.della_apps
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings.Global.putString
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.della_apps.databinding.ActivityAuthBinding
-import com.example.della_apps.databinding.ActivityMainBinding
-import com.example.della_apps.pertemuan_4.FourthActivity
-import com.example.della_apps.pertemuan_5.FifthActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class AuthActivity : AppCompatActivity() {
@@ -42,7 +37,7 @@ class AuthActivity : AppCompatActivity() {
                     putString("email", email)
                 }
 
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, AuthActivity::class.java)
                 startActivity(intent)
             } else {
                 MaterialAlertDialogBuilder(this)

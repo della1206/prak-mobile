@@ -8,8 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.della_apps.Home.Pertemuan_2.SecondActivity
 import com.example.della_apps.databinding.ActivityMainBinding // Gunakan binding MainActivity
-import com.example.della_apps.pertemuan_5.FifthActivity // Import FifthActivity
+import com.example.della_apps.Home.pertemuan_3.ThirdActivity
+import com.example.della_apps.Home.pertemuan_4.FourthActivity
+import com.example.della_apps.Home.pertemuan_5.FifthActivity // Import FifthActivity
+import com.example.della_apps.Home.pertemuan_7.SeventhActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +36,22 @@ class MainActivity : AppCompatActivity() {
 
         val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
 
+        binding.btnToSecond.setOnClickListener {
+            val intent = Intent(this, SecondActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnToSeventh.setOnClickListener {
+            val intent = Intent(this, SeventhActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnToFourth.setOnClickListener {
+            val intent = Intent(this, FourthActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnToThird.setOnClickListener {
+            val intent = Intent(this, ThirdActivity::class.java)
+            startActivity(intent)
+        }
         binding.btnToFifth.setOnClickListener {
             val intent = Intent(this, FifthActivity::class.java)
             startActivity(intent)
@@ -50,9 +70,11 @@ class MainActivity : AppCompatActivity() {
                     }
                     .setNegativeButton("Batal") { dialog, _ ->
                         dialog.dismiss()
+                        Log.e("Info Dialog","Anda memilih Tidak!")
                     }
                     .show()
             }
-            }
+
+        }
     }
 }

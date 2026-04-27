@@ -1,5 +1,6 @@
-package com.example.della_apps.pertemuan_5
+package com.example.della_apps.Home.pertemuan_5
 
+import android.R
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
@@ -58,7 +59,7 @@ class WebViewActivity : AppCompatActivity() {
     // 5. Menangani tombol Back di Toolbar (Ikon Panah)
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            android.R.id.home -> {
+            R.id.home -> {
                 onBackPressedDispatcher.onBackPressed()
                 true
             }
