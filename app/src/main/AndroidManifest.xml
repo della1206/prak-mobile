@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.della_apps">
 
+    <!-- Izin Akses Internet untuk Glide memuat gambar dari URL -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -11,35 +12,45 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dellaapps">
+
+        <!-- 1. HALAMAN UTAMA (LAUNCHER) -->
         <activity
             android:name=".SplashScreenActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 2. HALAMAN DASHBOARD & AUTH -->
         <activity
-            android:name=".Home.pertemuan_7.SeventhActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".AuthActivity"
             android:exported="false" />
         <activity
             android:name=".BaseActivity"
-            android:exported="false"/>
+            android:exported="false" />
+
+        <!-- 3. HALAMAN PERTEMUAN 9 (MODUL TERBARU) -->
         <activity
-            android:name=".Home.pertemuan_5.WebViewActivity"
+            android:name=".Home.pertemuan_9.NinthActivity"
+            android:exported="false" />
+
+        <!-- 4. DAFTAR HALAMAN PERTEMUAN SEBELUMNYA -->
+        <activity
+            android:name=".Home.pertemuan_7.SeventhActivity"
             android:exported="false" />
         <activity
             android:name=".Home.pertemuan_5.FifthActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Home.pertemuan_5.WebViewActivity"
             android:exported="false" />
         <activity
-            android:name=".Home.Pertemuan_2.SecondActivity"
+            android:name=".Home.pertemuan_4.FourthActivity"
             android:exported="false" />
         <activity
             android:name=".Home.pertemuan_3.ThirdActivity"
@@ -48,8 +59,9 @@
             android:name=".Home.pertemuan_3.ThirdResultActivity"
             android:exported="false" />
         <activity
-            android:name=".Home.pertemuan_4.FourthActivity"
+            android:name=".Home.Pertemuan_2.SecondActivity"
             android:exported="false" />
+
     </application>
 
 </manifest>
