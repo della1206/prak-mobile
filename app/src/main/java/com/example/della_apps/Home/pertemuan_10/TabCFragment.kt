@@ -79,6 +79,7 @@ class TabCFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Memanggil ProductAdapter lokal package com.example.della_apps
         val adapter = ProductAdapter(productList) { selectedItem ->
             Toast.makeText(
                 requireContext(),
@@ -88,6 +89,7 @@ class TabCFragment : Fragment() {
         }
 
         binding.rvProducts.apply {
+            // SpanCount diubah ke 2 kolom agar berbentuk Grid sejajar kanan-kiri
             layoutManager = GridLayoutManager(requireContext(), 1)
             this.adapter = adapter
         }
