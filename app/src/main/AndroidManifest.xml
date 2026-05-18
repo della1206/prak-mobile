@@ -12,9 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dellaapps">
         <activity
-            android:name=".Home.pertemuan_10.TenthActivity"
+            android:name=".Home.pertemuan_10.TenthTabsAdapter"
             android:exported="false" />
-        <!-- 1. HALAMAN UTAMA (LAUNCHER) -->
+        <activity
+            android:name=".Home.pertemuan_10.ProductModel"
+            android:exported="false" />
+        <activity
+            android:name=".Home.pertemuan_10.ProductAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".Home.pertemuan_10.TenthActivity"
+            android:exported="false" /> <!-- 1. HALAMAN UTAMA (LAUNCHER) -->
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true">

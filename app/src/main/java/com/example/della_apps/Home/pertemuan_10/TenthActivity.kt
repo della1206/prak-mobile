@@ -27,6 +27,7 @@ class TenthActivity : AppCompatActivity() {
             insets
         }
 
+        // Setup Toolbar
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
             title = "Pertemuan 10"
@@ -35,22 +36,29 @@ class TenthActivity : AppCompatActivity() {
             setDisplayShowHomeEnabled(true)
         }
 
+        // 1. Inisialisasi Adapter Utama
         val tabsAdapter = TenthTabsAdapter(this)
         binding.viewPager.adapter = tabsAdapter
 
+        // 2. Hubungkan TabLayout & ViewPager2 + Konfigurasi Atribut Eksklusif
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             when (position) {
                 0 -> {
                     tab.text = "Tab A"
                     tab.setIcon(R.drawable.ic_home)
+                    val badge = tab.getOrCreateBadge()
+                    badge.isVisible = true // Memasang titik merah notifikasi dasar
                 }
                 1 -> {
                     tab.text = "Tab B"
                     tab.setIcon(R.drawable.ic_home)
-
                     val badge = tab.getOrCreateBadge()
-                    badge.number = 1
+                    badge.number = 5 // Memasang badge angka 5 sesuai instruksi target
                     badge.isVisible = true
+                }
+                2 -> {
+                    tab.text = "Produk"
+                    tab.setIcon(android.R.drawable.ic_menu_view) // Ikon bawaan sistem Android (Kacamata/View)
                 }
             }
         }.attach()
