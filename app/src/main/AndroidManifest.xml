@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dellaapps">
         <activity
+            android:name=".Message.tutorial.TutorialMessageActivity"
+            android:exported="false" />
+        <activity
             android:name=".Home.pertemuan_10.TenthTabsAdapter"
             android:exported="false" />
         <activity
