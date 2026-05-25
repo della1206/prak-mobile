@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.della_apps.AuthActivity
 import com.example.della_apps.Home.pertemuan_10.TenthActivity
 import com.example.della_apps.Home.pertemuan_3.ThirdActivity
@@ -17,8 +18,10 @@ import com.example.della_apps.Home.pertemuan_4.FourthActivity
 import com.example.della_apps.Home.pertemuan_5.FifthActivity
 import com.example.della_apps.Home.pertemuan_7.SeventhActivity
 import com.example.della_apps.Home.pertemuan_9.NinthActivity
+import com.example.della_apps.data.api.CatFactApiClient
 import com.example.della_apps.databinding.FragmentHomeBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
@@ -42,6 +45,10 @@ class HomeFragment : Fragment() {
         (requireActivity() as AppCompatActivity).supportActionBar?.apply {
             title = "Home"
         }
+        loadCatFact()
+        binding.btnRefresh.setOnClickListener {
+            loadCatFact()
+        }
 
         binding.btnToSeventh.setOnClickListener {
             val intent = Intent(requireContext(), SeventhActivity::class.java)
@@ -62,6 +69,7 @@ class HomeFragment : Fragment() {
             val intent = Intent(requireContext(), FifthActivity::class.java)
             startActivity(intent)
         }
+
         binding.btnToNinth.setOnClickListener {
             val intent = Intent(requireContext(), NinthActivity::class.java)
             startActivity(intent)
@@ -90,6 +98,16 @@ class HomeFragment : Fragment() {
                     Log.e("Info Dialog", "Anda memilih Tidak!")
                 }
                 .show()
+        }
+    }
+    private fun loadCatFact() {
+        lifecycleScope.launch {
+            try {
+                val response = CatFactApiClient.apiService.getCatFact()
+                binding.tvCatFact.text = "\"${response.fact}\""
+            } catch (e: Exception) {
+                binding.tvCatFact.text = "Gagal mengambil fakta kucing."
+            }
         }
     }
 

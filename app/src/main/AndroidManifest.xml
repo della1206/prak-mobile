@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.della_apps">
-    <!-- Izin Akses Internet untuk Glide memuat gambar dari URL -->
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -11,30 +11,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dellaapps">
+
         <activity
             android:name=".Message.tutorial.TutorialMessageActivity"
             android:exported="false" />
-        <activity
-            android:name=".Home.pertemuan_10.TenthTabsAdapter"
-            android:exported="false" />
-        <activity
-            android:name=".Home.pertemuan_10.ProductModel"
-            android:exported="false" />
-        <activity
-            android:name=".Home.pertemuan_10.ProductAdapter"
-            android:exported="false" />
+
         <activity
             android:name=".Home.pertemuan_10.TenthActivity"
-            android:exported="false" /> <!-- 1. HALAMAN UTAMA (LAUNCHER) -->
+            android:exported="false" />
+
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- 2. HALAMAN DASHBOARD & AUTH -->
+        </activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="false" />
@@ -43,10 +37,12 @@
             android:exported="false" />
         <activity
             android:name=".BaseActivity"
-            android:exported="false" /> <!-- 3. HALAMAN PERTEMUAN 9 (MODUL TERBARU) -->
+            android:exported="false" />
+
         <activity
             android:name=".Home.pertemuan_9.NinthActivity"
-            android:exported="false" /> <!-- 4. DAFTAR HALAMAN PERTEMUAN SEBELUMNYA -->
+            android:exported="false" />
+
         <activity
             android:name=".Home.pertemuan_7.SeventhActivity"
             android:exported="false" />
