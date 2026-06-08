@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.della_apps.AuthActivity
 import com.example.della_apps.Home.pertemuan_10.TenthActivity
+import com.example.della_apps.Home.pertemuan_13.ThirteenthActivity
 import com.example.della_apps.Home.pertemuan_3.ThirdActivity
 import com.example.della_apps.Home.pertemuan_4.FourthActivity
 import com.example.della_apps.Home.pertemuan_5.FifthActivity
@@ -77,6 +78,11 @@ class HomeFragment : Fragment() {
 
         binding.btnToTenth.setOnClickListener {
             val intent = Intent(requireContext(), TenthActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnTothirteenth.setOnClickListener {
+            val intent = Intent(requireContext(), ThirteenthActivity::class.java)
             startActivity(intent)
         }
 
