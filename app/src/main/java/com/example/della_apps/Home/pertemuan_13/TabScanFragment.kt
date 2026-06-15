@@ -17,6 +17,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.example.della_apps.R
 import com.example.della_apps.databinding.FragmentTabScanBinding
+import com.example.della_apps.utils.PermissionHelper
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
@@ -31,17 +32,12 @@ class TabScanFragment : Fragment() {
 
     private lateinit var cameraExecutor: ExecutorService
 
-    //Bisa semua format
-    //private var scanner = BarcodeScanning.getClient()
-
-    //Khusus hanya format QR Code
     private var scanner = BarcodeScanning.getClient(
         BarcodeScannerOptions.Builder()
             .setBarcodeFormats(Barcode.FORMAT_QR_CODE)
             .build()
     )
 
-    // Launcher untuk izin modern
     private val permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
         if (isGranted) {
             startCamera()
@@ -62,10 +58,15 @@ class TabScanFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         cameraExecutor = Executors.newSingleThreadExecutor()
 
-        if (hasCameraPermission()) {
-            startCamera()
+        if (!PermissionHelper.hasPermission(
+                requireActivity(),
+                Manifest.permission.CAMERA)) {
+            PermissionHelper.requestPermission(
+                permissionLauncher,
+                Manifest.permission.CAMERA
+            )
         } else {
-            permissionLauncher.launch(Manifest.permission.CAMERA)
+            startCamera()
         }
     }
 
@@ -115,11 +116,10 @@ class TabScanFragment : Fragment() {
         }, ContextCompat.getMainExecutor(requireContext()))
     }
 
-    // Hapus binding & matikan scanner saat view dihancurkan untuk mencegah memory leak
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        scanner.close() // Tanda tanya (?) dihapus karena scanner bertipe non-null
+        scanner.close()
         cameraExecutor.shutdown()
     }
-} // Kurung kurawal penutup ekstra yang salah sudah dibersihkan dari sini
+}
